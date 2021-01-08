@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">chat_mobile</string>
+    <string name="hello_blank_fragment">test</string>
+</resources>
