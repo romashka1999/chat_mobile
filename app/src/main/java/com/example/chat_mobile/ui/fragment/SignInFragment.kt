@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.chat_mobile.R
 import com.example.chat_mobile.application.RetrofitBuilder.getRetrofit
+import com.example.chat_mobile.dto.SignInDto
+import com.example.chat_mobile.view_model.AuthViewModel
 
 
 class SignInFragment : Fragment() {
+
+    private val authViewModel: AuthViewModel = AuthViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +28,14 @@ class SignInFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        getRetrofit()
+
+        authViewModel.signIn(SignInDto("test", "test123123123"))
+
+        authViewModel.signInLiveData.observe(
+            this,
+            {
+                println(it)
+            }
+        )
     }
 }
