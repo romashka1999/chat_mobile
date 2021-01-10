@@ -39,7 +39,6 @@ class AuthViewModel: ViewModel() {
     }
 
     fun signIn(signInDto: SignInDto) {
-        println("aqaaaaaaaaaaaa")
         authService.signIn(signInDto).enqueue(object : Callback<SignInResponse> {
             override fun onResponse(
                 call: Call<SignInResponse>,
@@ -53,7 +52,7 @@ class AuthViewModel: ViewModel() {
             }
 
             override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
-                println("aaaaaaaaaaaaaaaaaaaaasdasdasdasdasdasdasdasd")
+                println("onFailure")
             }
         })
     }

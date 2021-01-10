@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import com.example.chat_mobile.R
 import com.example.chat_mobile.application.RetrofitBuilder.getRetrofit
 import com.example.chat_mobile.dto.SignInDto
+import com.example.chat_mobile.payload.SignInResponse
+import com.example.chat_mobile.service.AuthService
 import com.example.chat_mobile.view_model.AuthViewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class SignInFragment : Fragment() {
@@ -29,7 +34,8 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        authViewModel.signIn(SignInDto("test", "test123123123"))
+        // for testing
+        authViewModel.signIn(SignInDto("tesasdasdasdasdt", "test123123123"))
 
         authViewModel.signInLiveData.observe(
             this,
@@ -37,5 +43,7 @@ class SignInFragment : Fragment() {
                 println(it)
             }
         )
+
+
     }
 }
