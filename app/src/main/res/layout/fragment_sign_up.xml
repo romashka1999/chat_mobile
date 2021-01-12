@@ -11,12 +11,6 @@
     android:gravity="center">
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/login_icon"
-        android:padding="30dp"/>
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +22,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signin_username_edit_text"
+            android:id="@+id/signup_username_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Username"
@@ -50,7 +44,29 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signin_password_edit_text"
+            android:id="@+id/signup_email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Email"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textSize="22sp"
+            android:drawableRight="@drawable/ic_email"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:textColorHint="@color/colorAccent"
+        android:layout_marginTop="5dp"
+
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_password_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Password"
@@ -61,25 +77,37 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/signin_login_button"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:textSize="22sp"
-        android:textColor="#ffffff"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/ic_button_rounded"/>
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:textColorHint="@color/colorAccent"
+        android:layout_marginTop="5dp"
+
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_confirm_password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textSize="22sp"
+            android:drawableRight="@drawable/ic_password"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/signin_register_button"
+        android:id="@+id/signup_register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:textSize="22sp"
         android:textColor="#ffffff"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/ic_button_rounded"/>
+        android:layout_marginTop="40dp"
+        android:background="@drawable/ic_button_rounded"
 
-
+        />
 </LinearLayout>

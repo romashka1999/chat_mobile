@@ -34,16 +34,14 @@ class AuthViewModel: ViewModel() {
                 }
             }
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                println("onFailure")
             }
         })
     }
 
     fun signIn(signInDto: SignInDto) {
         authService.signIn(signInDto).enqueue(object : Callback<SignInResponse> {
-            override fun onResponse(
-                call: Call<SignInResponse>,
-                response: Response<SignInResponse>
-            ) {
+            override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.let {
                         _signInLiveData.postValue(it)
