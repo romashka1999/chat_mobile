@@ -9,25 +9,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.example.chat_mobile.R
-import com.example.chat_mobile.application.RetrofitBuilder.getRetrofit
 import com.example.chat_mobile.dto.SignInDto
-import com.example.chat_mobile.payload.SignInResponse
-import com.example.chat_mobile.service.AuthService
 import com.example.chat_mobile.view_model.AuthViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class SignInFragment : Fragment() {
 
     private val authViewModel: AuthViewModel = AuthViewModel()
-    private lateinit var signin_username_edit_text: EditText
-    private lateinit var signin_password_edit_text: EditText
-    private lateinit var signin_login_button: Button
-    private lateinit var signin_register_button: Button
+    private lateinit var username: EditText
+    private lateinit var password: EditText
+    private lateinit var signIn: Button
+    private lateinit var signUp: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,32 +37,34 @@ class SignInFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
-        signin_username_edit_text = view.findViewById(R.id.signin_username_edit_text)
-        signin_password_edit_text = view.findViewById(R.id.signin_password_edit_text)
-        signin_login_button = view.findViewById(R.id.signin_login_button)
-        signin_register_button = view.findViewById(R.id.signin_register_button)
+        username = view.findViewById(R.id.signin_username_edit_text)
+        password = view.findViewById(R.id.signin_password_edit_text)
+        signIn = view.findViewById(R.id.signin_login_button)
+        signUp = view.findViewById(R.id.signin_register_button)
 
         initListeners()
     }
 
 
     private fun initListeners() {
-        signin_login_button.setOnClickListener {
-            println("daekliaaaaaaaaaaa")
+        signIn.setOnClickListener {
             signInUser(
 
             )
+//            signIn.setOnClickListener {
+//                findNavController().navigate(R.id.signInFragment)
+//            }
         }
 
-        signin_register_button.setOnClickListener {
-            goToSignUpFragment()
+        signUp.setOnClickListener {
+            findNavController().navigate(R.id.signUpFragment)
         }
     }
 
 
     private fun signInUser() {
-        val username = signin_username_edit_text.text.toString()
-        val password = signin_password_edit_text.text.toString()
+        val username = username.text.toString()
+        val password = password.text.toString()
 
         if(!validateSignIn(username, password)) {
             println("araaa validuri")
@@ -79,48 +75,39 @@ class SignInFragment : Fragment() {
         authViewModel.signIn(signInDto)
 
         authViewModel.signInLiveData.observe(
-            this,
+            viewLifecycleOwner,
             {
-                saveAcessTokenToStorage(it.accessToken)
+                saveAccessTokenToStorage(it.accessToken)
             }
         )
     }
 
     private fun validateSignIn(username: String, password: String): Boolean {
         if(!setFormFieldValidations()) {
-            Toast.makeText(context, "Fileds must not be blank", Toast.LENGTH_LONG)
+            Toast.makeText(context, "Fileds must not be blank", Toast.LENGTH_LONG).show()
             return false
         }
         return true
     }
 
     private fun setFormFieldValidations(): Boolean {
-        var ans: Boolean = validateFiled(signin_username_edit_text)
-        ans = validateFiled(signin_password_edit_text)
-        return ans
+        return validateField(password) || validateField(username)
     }
 
-    private fun validateFiled(editText: EditText): Boolean {
+    private fun validateField(editText: EditText): Boolean {
         if(editText.text.toString().isEmpty()) {
-            editText.setError("Field can not be empty")
+            editText.error = "Field can not be empty"
             return false
         }
         return true
     }
 
-    private fun saveAcessTokenToStorage(accessToken: String) {
+    private fun saveAccessTokenToStorage(accessToken: String) {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
         with (sharedPref.edit()) {
-            putString("TOKEN", accessToken)
+            putString(getString(R.string.token), accessToken)
             apply()
         }
-    }
-
-    private fun goToSignUpFragment() {
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .add(R.id.auth_fragment_container, SignUpFragment(), SignUpFragment::class.java.simpleName)
-            .commit()
     }
 
 }

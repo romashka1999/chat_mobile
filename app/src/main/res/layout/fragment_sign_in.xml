@@ -1,85 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.SignInFragment"
-    android:background="@color/background"
-    android:padding="30dp"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:gravity="center">
+    android:fillViewport="true">
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/login_icon"
-        android:padding="30dp"/>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorAccent"
-        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:background="@color/background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="30dp"
+        tools:context=".ui.fragment.SignInFragment">
 
-        >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signin_username_edit_text"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:padding="30dp"
+            android:src="@drawable/login_icon"
+            android:contentDescription="@string/sign_in" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Username"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="22sp"
-            android:drawableRight="@drawable/ic_username"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColorHint="@color/colorAccent"
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorAccent"
-        android:layout_marginTop="5dp"
+            >
 
-        >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signin_username_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_username"
+                android:ems="10"
+                android:hint="@string/enter_username"
+                android:inputType="text"
+                android:textSize="22sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signin_password_edit_text"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Password"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textSize="22sp"
-            android:drawableRight="@drawable/ic_password"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColorHint="@color/colorAccent"
 
-    <Button
-        android:id="@+id/signin_login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:textSize="22sp"
-        android:textColor="#ffffff"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/ic_button_rounded"/>
+            >
 
-    <Button
-        android:id="@+id/signin_register_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="22sp"
-        android:textColor="#ffffff"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/ic_button_rounded"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signin_password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_password"
+                android:ems="10"
+                android:hint="@string/enter_password"
+                android:inputType="textPassword"
+                android:textSize="22sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/signin_login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/ic_button_rounded"
+            android:text="@string/sign_in"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/signin_register_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_button_rounded"
+            android:text="@string/sign_up"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+</ScrollView>

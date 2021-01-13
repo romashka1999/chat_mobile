@@ -75,11 +75,11 @@ class SignUpFragment : Fragment() {
 
     private fun validateSignIUp(username: String, email: String, password: String, confirmPassword: String): Boolean {
         if(!setFormFieldValidations()) {
-            Toast.makeText(context, "Fileds must not be blank", Toast.LENGTH_LONG)
+            Toast.makeText(context, "Fileds must not be blank", Toast.LENGTH_LONG).show()
             return false
         }
         if(!password.equals(confirmPassword)) {
-            Toast.makeText(context, "Confirm password does not match", Toast.LENGTH_LONG)
+            Toast.makeText(context, "Confirm password does not match", Toast.LENGTH_LONG).show()
             return false
         }
         return true

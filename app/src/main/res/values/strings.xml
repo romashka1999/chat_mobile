@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">chat_mobile</string>
     <string name="hello_blank_fragment">test</string>
+    <string name="token">shared_preferences_auth_token</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="sign_in">Sign In</string>
 </resources>
