@@ -61,7 +61,7 @@ class SignInFragment : Fragment() {
         val username = username.text.toString()
         val password = password.text.toString()
 
-        if(!validateSignIn(username, password)) {
+        if(!validateSignIn()) {
             println("invalid")
             return
         }
@@ -77,7 +77,7 @@ class SignInFragment : Fragment() {
         )
     }
 
-    private fun validateSignIn(username: String, password: String): Boolean {
+    private fun validateSignIn(): Boolean {
         if(!setFormFieldValidations()) {
             Toast.makeText(context, "Fields must not be blank", Toast.LENGTH_LONG).show()
             return false

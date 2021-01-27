@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/search_group_title"
+            android:id="@+id/create_group_title_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -47,7 +47,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/signup_register_button"
+        android:id="@+id/create_group_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
