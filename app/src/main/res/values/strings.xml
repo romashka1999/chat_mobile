@@ -11,4 +11,7 @@
     <string name="group_title">group title</string>
     <string name="create_group">create group</string>
     <string name="create_your_group">Create your group</string>
+    <string name="write_your_message">write your message</string>
+    <string name="send">Send</string>
+    <string name="submitbutton">submitButton</string>
 </resources>

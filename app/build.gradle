@@ -3,11 +3,21 @@ plugins {
     id 'kotlin-android'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-android-extensions'
+    id('kotlin-kapt')
 }
+
+androidExtensions {
+    experimental = true
+}
+
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+
+    dataBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.example.chat_mobile"
@@ -58,4 +68,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version_ktx"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version_ktx"
     implementation 'androidx.appcompat:appcompat:1.2.0'
+
+    implementation "com.xwray:groupie:2.7.0"
+    implementation "com.xwray:groupie-databinding:2.7.0"
+    implementation "com.xwray:groupie-kotlin-android-extensions:2.7.0"
 }

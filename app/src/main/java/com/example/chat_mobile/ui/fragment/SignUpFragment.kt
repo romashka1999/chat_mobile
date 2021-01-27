@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.chat_mobile.R
 import com.example.chat_mobile.dto.SignInDto
-import com.example.chat_mobile.util.getJwtTokenSharedPreferences
 import com.example.chat_mobile.view_model.AuthViewModel
 
 
@@ -41,10 +41,10 @@ class SignUpFragment : Fragment() {
         signup_password_edit_text = view.findViewById(R.id.signup_password_edit_text)
         signup_confirm_password_edit_text = view.findViewById(R.id.signup_confirm_password_edit_text)
         signup_register_button = view.findViewById(R.id.signup_register_button)
-        ininListener()
+        initListener()
     }
 
-    private fun ininListener() {
+    private fun initListener() {
         signup_register_button.setOnClickListener {
             println("daekliaaaaaaaaaaa")
             signUpUser()
@@ -102,10 +102,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun goToSignInFragment() {
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .add(R.id.auth_fragment_container, SignInFragment(), SignInFragment::class.java.simpleName)
-            .commit()
+        findNavController().navigate(R.id.signInFragment)
     }
 
 

@@ -33,10 +33,18 @@
         <action
             android:id="@+id/action_homeFragment_to_createGroupFragment"
             app:destination="@id/createGroupFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
         android:id="@+id/createGroupFragment"
         android:name="com.example.chat_mobile.ui.fragment.CreateGroupFragment"
         android:label="fragment_create_group"
         tools:layout="@layout/fragment_create_group" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.chat_mobile.ui.fragment.ChatFragment"
+        android:label="ChatFragment"
+        tools:layout="@layout/fragment_chat"/>
 </navigation>

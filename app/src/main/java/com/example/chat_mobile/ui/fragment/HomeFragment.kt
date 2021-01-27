@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ class HomeFragment : Fragment() {
     private val groupViewModel: GroupViewModel = GroupViewModel()
     private lateinit var recyclerView: RecyclerView
     private lateinit var createGroupBtn: FloatingActionButton;
+    private lateinit var searchButton: Button;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +36,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
+        searchButton = view.findViewById(R.id.home_group_search)
         createGroupBtn = view.findViewById(R.id.createie_group_floatingActionButton)
         recyclerView = view.findViewById(R.id.home_groups_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this@HomeFragment.context, LinearLayoutManager.VERTICAL, false)
-
         groupViewModel.getGroups(getToken())
 
         groupViewModel.groupsLiveData.observe(
@@ -58,6 +60,10 @@ class HomeFragment : Fragment() {
     private fun initListeners() {
         createGroupBtn.setOnClickListener {
             findNavController().navigate(R.id.createGroupFragment)
+        }
+
+        searchButton.setOnClickListener {
+            findNavController().navigate(R.id.chatFragment)
         }
     }
 
