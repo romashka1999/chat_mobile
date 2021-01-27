@@ -8,4 +8,7 @@
     <string name="enter_email">Enter Email</string>
     <string name="enter_username">Enter Username</string>
     <string name="sign_in">Sign In</string>
+    <string name="group_title">group title</string>
+    <string name="create_group">create group</string>
+    <string name="create_your_group">Create your group</string>
 </resources>
