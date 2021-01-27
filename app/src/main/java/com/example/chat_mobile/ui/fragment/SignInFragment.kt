@@ -1,6 +1,5 @@
 package com.example.chat_mobile.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +11,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.chat_mobile.R
 import com.example.chat_mobile.dto.SignInDto
+import com.example.chat_mobile.util.getJwtTokenSharedPreferences
 import com.example.chat_mobile.view_model.AuthViewModel
 
 
@@ -48,12 +48,7 @@ class SignInFragment : Fragment() {
 
     private fun initListeners() {
         signIn.setOnClickListener {
-            signInUser(
-
-            )
-//            signIn.setOnClickListener {
-//                findNavController().navigate(R.id.signInFragment)
-//            }
+            signInUser()
         }
 
         signUp.setOnClickListener {
@@ -67,7 +62,7 @@ class SignInFragment : Fragment() {
         val password = password.text.toString()
 
         if(!validateSignIn(username, password)) {
-            println("araaa validuri")
+            println("invalid")
             return
         }
         val signInDto = SignInDto(username, password)
@@ -84,7 +79,7 @@ class SignInFragment : Fragment() {
 
     private fun validateSignIn(username: String, password: String): Boolean {
         if(!setFormFieldValidations()) {
-            Toast.makeText(context, "Fileds must not be blank", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Fields must not be blank", Toast.LENGTH_LONG).show()
             return false
         }
         return true
@@ -103,11 +98,12 @@ class SignInFragment : Fragment() {
     }
 
     private fun saveAccessTokenToStorage(accessToken: String) {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val sharedPref = this.getJwtTokenSharedPreferences()
         with (sharedPref.edit()) {
             putString(getString(R.string.token), accessToken)
             apply()
         }
+        findNavController().navigate(R.id.homeFragment)
     }
 
 }

@@ -1,12 +1,9 @@
 package com.example.chat_mobile.view_model
 
-import android.app.Activity
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.chat_mobile.R
-import com.example.chat_mobile.application.RetrofitBuilder
+import com.example.chat_mobile.application.RetrofitBuilder.getRetrofit
 import com.example.chat_mobile.dto.SignInDto
 import com.example.chat_mobile.dto.SignUpDto
 import com.example.chat_mobile.payload.SignInResponse
@@ -16,11 +13,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AuthViewModel(activity : Activity): ViewModel() {
+class AuthViewModel(): ViewModel() {
 
-    private val accessToken = "roma"
 
-    private val authService: AuthService = RetrofitBuilder().getInstance(accessToken!!).create(AuthService::class.java)
+    private val authService: AuthService = getRetrofit().create(AuthService::class.java)
 
     private val _signUpLiveData = MutableLiveData<SignUpResponse>()
     val signUpLiveData: LiveData<SignUpResponse> = _signUpLiveData

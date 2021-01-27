@@ -10,11 +10,11 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.chat_mobile.R
 import com.example.chat_mobile.dto.SignInDto
+import com.example.chat_mobile.util.getJwtTokenSharedPreferences
 import com.example.chat_mobile.view_model.AuthViewModel
 
 
 class SignUpFragment : Fragment() {
-
     private val authViewModel: AuthViewModel = AuthViewModel()
     private lateinit var signup_username_edit_text: EditText
     private lateinit var signup_email_edit_text: EditText
@@ -66,7 +66,7 @@ class SignUpFragment : Fragment() {
         authViewModel.signIn(signInDto)
 
         authViewModel.signInLiveData.observe(
-            this,
+            viewLifecycleOwner,
             {
                 goToSignInFragment()
             }
@@ -78,7 +78,7 @@ class SignUpFragment : Fragment() {
             Toast.makeText(context, "Fileds must not be blank", Toast.LENGTH_LONG).show()
             return false
         }
-        if(!password.equals(confirmPassword)) {
+        if(password != confirmPassword) {
             Toast.makeText(context, "Confirm password does not match", Toast.LENGTH_LONG).show()
             return false
         }

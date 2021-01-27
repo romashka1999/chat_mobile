@@ -7,5 +7,5 @@ import retrofit2.http.Header
 
 interface GroupsService {
     @GET("/group/getAllJoinedGroups")
-    fun getGroups(): Call<List<Group>>
+    fun getGroups(@Header("Authorization") token: String): Call<List<Group>>
 }

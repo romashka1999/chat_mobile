@@ -1,5 +1,6 @@
 package com.example.chat_mobile.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chat_mobile.R
 import com.example.chat_mobile.ui.recycler_view.GroupListAdapter
+import com.example.chat_mobile.util.getJwtTokenSharedPreferences
 import com.example.chat_mobile.view_model.GroupViewModel
 
 class HomeFragment : Fragment() {
@@ -32,7 +34,7 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.home_groups_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this@HomeFragment.context, LinearLayoutManager.VERTICAL, false)
 
-        groupViewModel.getGroups()
+        groupViewModel.getGroups(getToken()!!)
 
         groupViewModel.groupsLiveData.observe(
             viewLifecycleOwner,
@@ -41,5 +43,9 @@ class HomeFragment : Fragment() {
             }
         )
 
+    }
+
+    private fun getToken(): String? {
+        return getJwtTokenSharedPreferences().getString(getString(R.string.token), "")
     }
 }
