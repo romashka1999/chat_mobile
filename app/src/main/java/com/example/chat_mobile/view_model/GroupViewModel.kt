@@ -22,10 +22,6 @@ class GroupViewModel: ViewModel() {
     private val _groupsLiveData = MutableLiveData<List<Group>>()
     val groupsLiveData: LiveData<List<Group>> = _groupsLiveData
 
-    private val _signInLiveData = MutableLiveData<SignInResponse>()
-    val signInLiveData: LiveData<SignInResponse> = _signInLiveData
-
-
     fun getGroups() {
         groupsService.getGroups().enqueue(object : Callback<List<Group>> {
             override fun onResponse(call: Call<List<Group>>, response: Response<List<Group>>) {

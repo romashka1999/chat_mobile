@@ -22,13 +22,11 @@ class GroupListAdapter(private val groupList: List<Group>): RecyclerView.Adapter
 }
 
 class  GroupViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-    private val groupTitle = itemView.findViewById<TextView>(R.id.groupTitle)
-    private val groupAdminName = itemView.findViewById<TextView>(R.id.groupAdminName)
+    private val groupTitle = itemView.findViewById<TextView>(R.id.home_group_item_group_title)
 
     fun setContent(group: Group) {
         with(group) {
             groupTitle.text = title
-            groupAdminName.text = adminName
         }
     }
 }
