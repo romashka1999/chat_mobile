@@ -71,9 +71,16 @@ class CreateGroupFragment : Fragment() {
     private fun createGroup() {
         if(!validateGroupTitle()) return
 
-        val groupCreateDto = GroupCreateDto(groupTitle.text.toString(), true)
+        val groupCreateDto = GroupCreateDto(groupTitle.text.toString())
         groupViewModel.createGroup(groupCreateDto, getToken())
-        findNavController().popBackStack()
+
+        groupViewModel.createGroupLiveData.observe(
+            viewLifecycleOwner,
+            {
+                println(it)
+                findNavController().popBackStack()
+            }
+        )
     }
 
     private fun getToken(): String {

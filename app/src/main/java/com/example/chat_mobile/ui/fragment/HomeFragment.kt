@@ -46,12 +46,6 @@ class HomeFragment : Fragment() {
                 recyclerView.adapter = GroupListAdapter(it)
             }
         )
-        groupViewModel.createGroupLiveData.observe(
-            viewLifecycleOwner,
-            {
-                println(it)
-            }
-        )
         initListeners()
     }
 
