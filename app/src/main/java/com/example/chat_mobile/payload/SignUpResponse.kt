@@ -1,5 +1,5 @@
 package com.example.chat_mobile.payload
 
 data class SignUpResponse (
-    val answer: String
+    val answer: Boolean
 )

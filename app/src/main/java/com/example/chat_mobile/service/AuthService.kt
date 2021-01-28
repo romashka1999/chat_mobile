@@ -12,9 +12,9 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface AuthService {
-    @POST("/auth/signup")
+    @POST("/auth/user/signUp")
     fun signUp(@Body signUpDto: SignUpDto): Call<SignUpResponse>
 
-    @POST("/auth/signin")
+    @POST("/auth/user/signIn")
     fun signIn(@Body signInDto: SignInDto): Call<SignInResponse>
 }

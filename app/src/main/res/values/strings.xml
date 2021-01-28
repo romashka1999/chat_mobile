@@ -14,4 +14,7 @@
     <string name="write_your_message">write your message</string>
     <string name="send">Send</string>
     <string name="submitbutton">submitButton</string>
+    <string name="enter_firstname">enter firstName</string>
+    <string name="enter_lastname">enter lastname</string>
+    <string name="enter_phonenumber">enter phonenumber</string>
 </resources>

@@ -11,11 +11,15 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.chat_mobile.R
 import com.example.chat_mobile.dto.SignInDto
+import com.example.chat_mobile.dto.SignUpDto
 import com.example.chat_mobile.view_model.AuthViewModel
 
 
 class SignUpFragment : Fragment() {
     private val authViewModel: AuthViewModel = AuthViewModel()
+    private lateinit var signup_firstname_edit_text: EditText
+    private lateinit var signup_lastname_edit_text: EditText
+    private lateinit var signup_phonenumber_edit_text: EditText
     private lateinit var signup_username_edit_text: EditText
     private lateinit var signup_email_edit_text: EditText
     private lateinit var signup_password_edit_text: EditText
@@ -36,6 +40,9 @@ class SignUpFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
+        signup_firstname_edit_text = view.findViewById(R.id.signup_firstName_edit_text)
+        signup_lastname_edit_text = view.findViewById(R.id.signup_lastName_edit_text)
+        signup_phonenumber_edit_text = view.findViewById(R.id.signup_phoneNumber_edit_text)
         signup_username_edit_text = view.findViewById(R.id.signup_username_edit_text)
         signup_email_edit_text = view.findViewById(R.id.signup_email_edit_text)
         signup_password_edit_text = view.findViewById(R.id.signup_password_edit_text)
@@ -52,20 +59,23 @@ class SignUpFragment : Fragment() {
     }
 
     private fun signUpUser() {
+        val firstName = signup_firstname_edit_text.text.toString()
+        val lastName = signup_lastname_edit_text.text.toString()
+        val phoneNumber = signup_phonenumber_edit_text.text.toString()
         val username = signup_username_edit_text.text.toString()
         val email = signup_email_edit_text.text.toString()
         val password = signup_password_edit_text.text.toString()
         val confirmPassword = signup_confirm_password_edit_text.text.toString()
 
-        if(!validateSignIUp(username, email, password, confirmPassword)) {
+        if(!validateSignIUp(password, confirmPassword)) {
             println("araaa validuri")
             return
         }
-        val signInDto = SignInDto(username, password)
+        val signUpDto = SignUpDto(firstName, lastName, username, email, phoneNumber, password)
 
-        authViewModel.signIn(signInDto)
+        authViewModel.signUp(signUpDto)
 
-        authViewModel.signInLiveData.observe(
+        authViewModel.signUpLiveData.observe(
             viewLifecycleOwner,
             {
                 goToSignInFragment()
@@ -73,7 +83,7 @@ class SignUpFragment : Fragment() {
         )
     }
 
-    private fun validateSignIUp(username: String, email: String, password: String, confirmPassword: String): Boolean {
+    private fun validateSignIUp(password: String, confirmPassword: String): Boolean {
         if(!setFormFieldValidations()) {
             Toast.makeText(context, "Fileds must not be blank", Toast.LENGTH_LONG).show()
             return false
@@ -87,9 +97,12 @@ class SignUpFragment : Fragment() {
 
     private fun setFormFieldValidations(): Boolean {
         var ans: Boolean = validateFiled(signup_username_edit_text)
-        ans = validateFiled(signup_email_edit_text)
-        ans = validateFiled(signup_password_edit_text)
-        ans = validateFiled(signup_confirm_password_edit_text)
+        ans = ans && validateFiled(signup_email_edit_text)
+        ans = ans && validateFiled(signup_password_edit_text)
+        ans = ans && validateFiled(signup_confirm_password_edit_text)
+        ans = ans && validateFiled(signup_firstname_edit_text)
+        ans = ans && validateFiled(signup_lastname_edit_text)
+        ans = ans && validateFiled(signup_phonenumber_edit_text)
         return ans
     }
 
